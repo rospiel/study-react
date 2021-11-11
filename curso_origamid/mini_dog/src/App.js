@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
+import Contato from './Components/Contato';
 
 const App = () => {
   return (
@@ -10,7 +11,9 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <div className="content">
-          <Routes></Routes>
+          <Routes>
+            <Route path="contato" element={<Contato />} />
+          </Routes>
         </div>
         <Footer />
       </BrowserRouter>
