@@ -1,0 +1,31 @@
+.produto {
+  max-width: 960px;
+  display: flex;
+}
+
+.fotos {
+  flex-basis: 470px;
+  padding-right: 10px;
+}
+
+.fotos img {
+  margin-bottom: 2rem;
+}
+
+.dados {
+  flex-basis: 470px;
+}
+
+.preco {
+  padding: 0.5rem;
+  background: #91fb5d;
+  color: #017e01;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 4px;
+}
+
+.descricao {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
