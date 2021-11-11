@@ -1,0 +1,9 @@
+.produtos {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  max-width: 200px;
+  padding: 5px;
+}
