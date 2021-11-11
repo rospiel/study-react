@@ -1,0 +1,33 @@
+.contato {
+  max-width: 960px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.foto {
+  flex-basis: 300px;
+}
+
+.dados {
+  margin-left: 2rem;
+}
+
+.dados ul {
+  padding: 0px;
+  list-style: none;
+}
+
+.dados li {
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 0.8rem;
+}
+
+.dados li::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #ddd;
+  margin-right: 10px;
+}
