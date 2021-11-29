@@ -69,6 +69,7 @@ export const UserStorage = ({ children }) => {
         setLoading(true);
 
         if (!token) {
+          setLogin(false);
           return;
         }
 

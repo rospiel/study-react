@@ -1,0 +1,38 @@
+.nav {
+  max-width: 50rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav a,
+.nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  border-radius: 0.2rem;
+  height: 40px;
+  width: 40px;
+  border: 1px solid transparent;
+  transition: 0.1s;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.nav a:hover,
+.nav a:focus,
+.nav button:hover,
+.nav button :focus {
+  background: white;
+  box-shadow: 0 0 0 3px #eee;
+  border-color: #333;
+}
+
+.nav a:global(.active) {
+  background: white;
+  box-shadow: 0 0 0 3px #fb1;
+}
+
+.nav a:global(.active) svg > * {
+  fill: #fb1;
+}

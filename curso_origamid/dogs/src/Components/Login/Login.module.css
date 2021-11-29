@@ -1,17 +1,14 @@
 .login {
   min-height: 100vh;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 600px;
 }
 
 .image {
   display: block;
-  height: 600px;
+  height: 550px;
 
-  width: 480px;
-  background: url('../../Assets/login.jpg') no-repeat center center;
+  width: 350px;
+  background: url('../../Assets/login.jpg') no-repeat;
   background-size: 100%;
 }
 
