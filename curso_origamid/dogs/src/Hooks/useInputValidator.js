@@ -32,9 +32,7 @@ const useInput = (type) => {
 
   function validate(value) {
     let validated = isToValidate();
-    console.log(validated);
     if (validated) {
-      console.log(validated);
       return validated;
     }
 
