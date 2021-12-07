@@ -14,6 +14,10 @@ const types = {
     regex: /^(?!\s*$).+/,
     message: 'Favor preencher o campo',
   },
+  number: {
+    regex: /^\d+$/,
+    message: 'Utilize somente números',
+  },
 };
 
 /** Criação do hook, para não validar basta passar um type que
