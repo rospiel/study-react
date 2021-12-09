@@ -1,0 +1,7 @@
+.feed {
+  display: flex;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  max-width: 50rem;
+  justify-content: center;
+}
