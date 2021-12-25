@@ -5,7 +5,7 @@ import { ReactComponent as Enviar } from '../../Assets/enviar.svg';
 import Error from '../Helper/Error';
 import styles from './PhotoCommentsForm.module.css';
 
-const PhotoCommentsForm = ({ id, setComments }) => {
+const PhotoCommentsForm = ({ id, setComments, isSingle }) => {
   const [comment, setComment] = React.useState('');
   const { request, error } = useFetch();
 
@@ -23,8 +23,12 @@ const PhotoCommentsForm = ({ id, setComments }) => {
     }
   }
 
+  function setStyles() {
+    return `${styles.form} ${isSingle ? styles.single : ''}`;
+  }
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={setStyles()} onSubmit={handleSubmit}>
       <textarea
         className={styles.textarea}
         id="comment"
