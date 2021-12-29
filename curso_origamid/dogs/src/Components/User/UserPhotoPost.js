@@ -7,6 +7,7 @@ import useInputValidator from '../../Hooks/useInputValidator';
 import { PHOTO_POST } from '../../apiUrl';
 import Error from '../Helper/Error';
 import { useNavigate } from 'react-router-dom';
+import Head from '../Helper/Head';
 
 const UserPhotoPost = () => {
   const nome = useInputValidator('required');
@@ -68,6 +69,10 @@ const UserPhotoPost = () => {
 
   return (
     <section className={`${styles.photoPost} animeLeft`}>
+      <Head
+        title="Poste sua foto"
+        description="Módulo para cadastro de novos fotos."
+      />
       <form onSubmit={handleSubmit}>
         <Input label="Nome" type="text" name="nome" {...nome} />
         <Input label="Peso" type="number" name="peso" {...peso} />

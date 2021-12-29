@@ -6,6 +6,7 @@ import { USER_POST } from '../../apiUrl';
 import { UserContext } from '../../UserContext';
 import useFetch from '../../Hooks/useFetch';
 import Error from '../Helper/Error';
+import Head from '../Helper/Head';
 
 const LoginCreate = () => {
   const username = useInputValidator('required');
@@ -37,6 +38,10 @@ const LoginCreate = () => {
 
   return (
     <section className="animeLeft">
+      <Head
+        title="Criar Conta"
+        description="Página de criação de perfil do site."
+      />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />

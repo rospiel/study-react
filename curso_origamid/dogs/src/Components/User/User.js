@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import Feed from '../Feed/Feed';
+import Head from '../Helper/Head';
 import NotFound from '../NotFound';
 import UserHeader from './UserHeader';
 import UserPhotoPost from './UserPhotoPost';
@@ -12,6 +13,10 @@ const User = () => {
 
   return (
     <section>
+      <Head
+        title="Minha Conta"
+        description="Página de acesso ao minha conta."
+      />
       <UserHeader />
       <Routes>
         <Route path="/" element={<Feed user={data.id} />} />
