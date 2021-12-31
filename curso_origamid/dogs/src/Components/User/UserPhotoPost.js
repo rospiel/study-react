@@ -60,7 +60,7 @@ const UserPhotoPost = () => {
   }
 
   function getButtonEnter() {
-    return <Button>Entrar</Button>;
+    return <Button>Salvar</Button>;
   }
 
   function getButtonLoading() {
