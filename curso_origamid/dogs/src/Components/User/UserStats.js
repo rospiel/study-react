@@ -25,7 +25,7 @@ const UserStats = () => {
     return <Error error={error} />;
   }
 
-  if (data) {
+  if (data && data.length > 0) {
     return (
       <React.Suspense fallback={<div></div>}>
         <Head

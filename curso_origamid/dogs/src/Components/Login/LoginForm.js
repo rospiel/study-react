@@ -44,7 +44,7 @@ const LoginForm = () => {
         <Input label="Usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
         {context.loading ? getButtonLoading() : getButtonEnter()}
-        <Error error={context.error} />
+        <Error error={context.error && 'Dados Incorretos.'} />
       </form>
       <Link className={styles.lost} to="/login/perdeu">
         Perdeu a Senha?

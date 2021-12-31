@@ -3,6 +3,17 @@
   margin-bottom: 2rem;
 }
 
+@media (max-width: 40rem) {
+  .photoPost {
+    flex-direction: column;
+  }
+
+  .preview {
+    margin-top: 2rem;
+    max-width: 420px;
+  }
+}
+
 .file {
   margin-bottom: 1rem;
 }
