@@ -39,9 +39,7 @@ const Container = styled.div`
     line-clamp: 1;
     overflow: hidden;
   }
-
 `
-
 const Actions = styled.div`
   display: flex;
   flex-direction: row;
