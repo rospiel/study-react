@@ -5,7 +5,6 @@ export const Wrapper = styled.a`
   text-decoration: none;
   border: 1px solid rgba(39, 64, 96, 0.1);
   box-sizing: border-box;
-  display: flex;
   flex-direction: row;
   align-items: center;
   color: #274060;
