@@ -1,6 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 
-import ImageUpload, { ImageUploadProps }  from '../components/ImageUpload/ImageUpload';
+import ImageUpload, { ImageUploadProps }  from '../app/components/ImageUpload/ImageUpload';
 
 export default {
   title: 'Example/ImageUpload',

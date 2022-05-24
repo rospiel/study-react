@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import { Column, useTable } from 'react-table';
 import styled from 'styled-components';
 
-import Table from '../components/Table/Table';
+import Table from '../app/components/Table/Table';
 
 export default {
   title: 'Example/Table',

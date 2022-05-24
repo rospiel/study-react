@@ -1,6 +1,6 @@
 import { ComponentMeta, Story } from '@storybook/react';
 
-import WordPriceCounter, { WordPriceCounterProps }  from '../components/WordPriceCounter/WordPriceCounter';
+import WordPriceCounter, { WordPriceCounterProps }  from '../app/components/WordPriceCounter/WordPriceCounter';
 
 export default {
   title: 'Example/WordPriceCounter',
