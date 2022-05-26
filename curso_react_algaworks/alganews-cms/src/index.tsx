@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './core/imports.css';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './core/globalStyles';
+import DefaultLayout from './app/layouts/Default/index';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    HELLO
+    <DefaultLayout>
+      OIE
+    </DefaultLayout>
+    
+    <GlobalStyles />
   </React.StrictMode>,
   document.getElementById('root')
 );
