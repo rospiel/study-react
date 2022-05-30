@@ -1,3 +1,6 @@
+import Logo from '../../components/Logo';
+import NavBar from '../../components/NavBar';
+import SessionController from '../../components/SessionController/SessionController';
 import * as DL from './Default.layout.styles'
 
 interface DefaultLayoutProps {
@@ -8,11 +11,11 @@ function DefaultLayout (props: DefaultLayoutProps) {
   return (
     <DL.Wrapper>
       <DL.Header>
-        HEADER
+        <Logo />
       </DL.Header>
       <DL.Main>
         <DL.Navigation>
-          SCREEN 1
+          <NavBar />
         </DL.Navigation>
 
         <DL.FeaturedContent>
@@ -20,7 +23,7 @@ function DefaultLayout (props: DefaultLayoutProps) {
         </DL.FeaturedContent>
 
         <DL.Aside>
-          SCREEN 3
+          <SessionController name="Rodrigo Santos" description="Developer" />
         </DL.Aside>
       </DL.Main>
     </DL.Wrapper>

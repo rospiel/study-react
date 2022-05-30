@@ -9,7 +9,7 @@ import DefaultLayout from './app/layouts/Default/index';
 ReactDOM.render(
   <React.StrictMode>
     <DefaultLayout>
-      OIE
+      
     </DefaultLayout>
     
     <GlobalStyles />
