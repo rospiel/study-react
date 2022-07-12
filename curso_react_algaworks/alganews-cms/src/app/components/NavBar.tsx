@@ -1,11 +1,14 @@
+import { NavLink } from "react-router-dom"
 import styled from "styled-components"
+import Contact from "../views/Contact.view"
+import Home from "../views/Home.view"
 
 export default function NavBar () {
   return (
     <>
       <List>
-        <li>Home</li>
-        <li>Contato</li>
+        <li><NavLink exact to="/">Home</NavLink></li>
+        <li><NavLink exact to="/contato">Contato</NavLink></li>
       </List>
     </>
   )
@@ -25,5 +28,9 @@ const List = styled.ul`
   a {
     text-decoration: none;
     color: #274060;
+
+    &.active {
+      color: #09f;
+    }
   }
 `

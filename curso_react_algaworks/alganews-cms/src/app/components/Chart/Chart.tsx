@@ -68,7 +68,7 @@ export default function Chart ({ data, title }: ChartProps) {
 }
 
 const ChartWrapper = styled.div`
-  width: 700px;
+  width: 100%;
   text-align: center;
   border: 1px solid ${transparentize(0.9, '#274060')};
   padding: 20px;
