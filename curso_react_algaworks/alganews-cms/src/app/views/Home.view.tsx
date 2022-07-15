@@ -7,9 +7,9 @@ import UserTopTags from "../features/UserTopTags.feature";
 import DefaultLayout from "../layouts/Default";
 
 export default function Home () {
-  <Head title="Home" description="Tela de entrada"></Head>
   return (
     <DefaultLayout>
+      <Head title="Home" description="Tela de entrada"></Head>
       <UserTopTagsEarningsContainer>
         <UserTopTags />
         <UserEarnings />

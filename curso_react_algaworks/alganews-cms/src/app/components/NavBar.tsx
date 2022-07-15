@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-import Contact from "../views/Contact.view"
 import Home from "../views/Home.view"
 
 export default function NavBar () {
@@ -8,7 +7,7 @@ export default function NavBar () {
     <>
       <List>
         <li><NavLink exact to="/">Home</NavLink></li>
-        <li><NavLink exact to="/contato">Contato</NavLink></li>
+        <li><NavLink exact to="/editores">Editores</NavLink></li>
       </List>
     </>
   )
