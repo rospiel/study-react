@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Wrapper as Button } from "../Button/Button.styles";
 
-export const Wrapper = styled.div`
-  width: 608px;
-`
+export const Wrapper = styled.div``
 
 export const Input = styled.input`
   display: none
@@ -35,8 +33,7 @@ export const ImagePreview = styled.div<{
 export const ImagePreviewWrapper = styled.div`
   background-color: #274060;
   height: 240px;
-  width: 608px;
-
+  
   ${Button} {
     display: none;
   }
@@ -44,7 +41,6 @@ export const ImagePreviewWrapper = styled.div`
   &:hover {
     ${ImagePreview} {
       content: '';
-      width: 608px;
       height: 240px;
       background-color: rgba(39, 64, 96, 0.7);
     }

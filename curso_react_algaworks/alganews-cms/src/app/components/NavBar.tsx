@@ -8,6 +8,7 @@ export default function NavBar () {
       <List>
         <li><NavLink exact to="/">Home</NavLink></li>
         <li><NavLink exact to="/editores">Editores</NavLink></li>
+        <li><NavLink exact to="/posts/criar">Novo Post</NavLink></li>
       </List>
     </>
   )

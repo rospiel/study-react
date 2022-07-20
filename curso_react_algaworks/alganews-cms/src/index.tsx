@@ -6,6 +6,7 @@ import GlobalStyles from './core/globalStyles';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './app/views/Home.view';
 import EditorList from './app/views/EditorReport.view';
+import PostCreate from './app/views/PostCreate.view';
 
 
 ReactDOM.render(
@@ -14,6 +15,7 @@ ReactDOM.render(
       <Switch>
         <Route path={'/'} exact component={Home} />
         <Route path={'/editores'} exact component={EditorList} />
+        <Route path={'/posts/criar'} exact component={PostCreate} />
 
       </Switch>
     </BrowserRouter>

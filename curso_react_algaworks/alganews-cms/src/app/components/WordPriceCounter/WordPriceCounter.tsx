@@ -27,7 +27,7 @@ function validateWordCounts(wordsCount: number) {
 function WordPriceCounter (props: WordPriceCounterProps) {
   return (
     <WPC.Wrapper>
-      <span className="wordCounter">0 palavras</span>
+      <span className="wordCounter">{props.wordsCount} palavras</span>
       <span className="pricePreview">
         {getTotalAndFormatter(props)}
       </span>
