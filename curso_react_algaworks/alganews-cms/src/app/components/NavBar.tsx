@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom"
 import styled from "styled-components"
-import Home from "../views/Home.view"
 
 export default function NavBar () {
   return (
