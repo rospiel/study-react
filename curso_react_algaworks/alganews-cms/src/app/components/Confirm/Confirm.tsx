@@ -4,6 +4,8 @@ import Button from "../Button/Button";
 
 export interface ConfirmProps {
   question: string
+  onConfirm: () => any
+  onCancel: () => any
 }
 
 export default function Confirm (props: ConfirmProps) {
@@ -11,8 +13,8 @@ export default function Confirm (props: ConfirmProps) {
     <Container>
       <span className="question">{props.question}</span>
       <Actions>
-        <Button label="Não" variant="danger"/>
-        <Button label="Sim" variant="primary"/>
+        <Button label="Não" variant="danger" onClick={props.onCancel}/>
+        <Button label="Sim" variant="primary" onClick={props.onConfirm}/>
       </Actions>
     </Container>
   )

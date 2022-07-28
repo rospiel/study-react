@@ -1,3 +1,4 @@
+import confirm from '../../../core/utils/confirm';
 import Logo from '../../components/Logo';
 import NavBar from '../../components/NavBar';
 import SessionController from '../../components/SessionController/SessionController';
@@ -23,7 +24,7 @@ function DefaultLayout (props: DefaultLayoutProps) {
         </DL.FeaturedContent>
 
         <DL.Aside>
-          <SessionController name="Rodrigo Santos" description="Developer" />
+          <SessionController name="Rodrigo Santos" description="Developer" onLogout={() => {confirm({title: 'Você deseja deslogar?'})}} />
         </DL.Aside>
       </DL.Main>
     </DL.Wrapper>
