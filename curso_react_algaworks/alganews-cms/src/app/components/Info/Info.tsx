@@ -1,6 +1,7 @@
 import Icon from "@mdi/react";
 import { mdiInformation } from "@mdi/js"; 
 import styled from "styled-components";
+import { transparentize } from "polished";
 
 export interface InfoProps {
   title: string
@@ -29,6 +30,7 @@ const InfoWrapper = styled.div`
   display: flex;
   background-color: #F3F8FA;
   width: 373px;
+  border: 1px solid ${transparentize(0.9, '#274060')};
 `
 
 const InfoIcon = styled.div`
