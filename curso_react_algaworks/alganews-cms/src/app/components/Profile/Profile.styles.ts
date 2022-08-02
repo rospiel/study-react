@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Wrapper = styled.a`
+export const Wrapper = styled(Link)`
   display: flex;
   text-decoration: none;
   border: 1px solid rgba(39, 64, 96, 0.1);

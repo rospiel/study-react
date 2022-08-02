@@ -24,15 +24,17 @@ export default function confirm(props: ConfirmProps) {
     onClose();
   }
 
-  confirmAlert({
-    overlayClassName: 'confirma-overlay',
-    customUI: ({ onClose }) => {
-      return (
-        <Confirm question={props.title} 
-        onConfirm={() => confirm(onClose)} 
-        onCancel={() => cancel(onClose)} />
-      );
-    }
-  });
-
+  /* Allow call confirmAlert from another confirmAlert - event loop macrotask */
+  setTimeout(() => {
+    confirmAlert({
+      overlayClassName: 'confirma-overlay',
+      customUI: ({ onClose }) => {
+        return (
+          <Confirm question={props.title} 
+          onConfirm={() => confirm(onClose)} 
+          onCancel={() => cancel(onClose)} />
+        );
+      }
+    });      
+  }, 0);
 }
