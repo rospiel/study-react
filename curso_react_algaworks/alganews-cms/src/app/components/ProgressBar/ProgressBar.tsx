@@ -34,6 +34,7 @@ const Container = styled.div<{
   }
 
   div.foreground {
+    padding-left: 8px;
     position: absolute;
     
     width: ${(props) => (props.progress || props.progress === 0 ? props.progress : 100)}%;
