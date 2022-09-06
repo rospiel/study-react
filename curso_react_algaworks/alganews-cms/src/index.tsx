@@ -17,7 +17,7 @@ ReactDOM.render(
       <Switch>
         <Route path={'/'} exact component={Home} />
         <Route path={'/editores'} exact component={EditorList} />
-        <Route path={'/editores/:id'} exact component={EditorProfileView} />
+        <Route path={'/editores/:id'} exact component={() => (<EditorProfileView isShowPersonalData={true} />)} />
         <Route path={'/posts/criar'} exact component={PostCreate} />
         <Route component={NotFound404} />
       </Switch>

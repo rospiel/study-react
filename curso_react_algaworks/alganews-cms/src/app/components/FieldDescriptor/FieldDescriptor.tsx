@@ -7,6 +7,7 @@ export interface FieldDescriptorProps {
 }
 
 export default function FieldDescriptor ({ label, value }:FieldDescriptorProps) {
+  throw new Error("Houve um erro");
   return (
     <StyledFieldDescriptor>
       <span className="label">{label}</span>
