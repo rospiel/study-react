@@ -1,7 +1,16 @@
+import { useEffect } from "react"
 import styled from "styled-components"
+import PostService from "../../sdk/services/Post.service"
 import Profile from "../components/Profile/Profile"
 
 export default function EditorReport() {
+  useEffect(() => {
+    const posts = PostService.getAllPosts({
+      editorId: 7
+    });
+    console.log(posts);
+  }, [])
+  
   return (
     <EditorReportContainer>
       <Profile editorId={1} name="Mariza Brito da Paixão" description="Editor à 2 anos"/>
