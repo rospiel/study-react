@@ -27,7 +27,7 @@ export default function PostForm() {
       body, 
       title, 
       tags: tags.map(tag => tag.text), 
-      imageUrl: ''
+      imageUrl
     }
     const insertedPost = await PostService.insertPost(newPost);
     info({title: 'Post salvo com sucesso', description: 'Você acabou de salvar o post, id gerado ' + insertedPost.id})
@@ -36,12 +36,13 @@ export default function PostForm() {
   const [tags, setTags] = useState<Tag[]>([]);
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
 
   return (
     <PostFormContainer onSubmit={event => handleFormSubmit(event)} >
       <Input label="título" placeholder="e.g.: Como fiquei rico aprendendo React" value={title} onChange={event => setTitle(event.currentTarget.value)} />
-      <ImageUpload label="Thumbnail do post" />
+      <ImageUpload onImageUpload={setImageUrl} label="Thumbnail do post" />
       <MarkdownEditor onChange={setBody} />
       <TagInput tags={tags} onAdd={tag => addTag(tag)} onDelete={index => removeTag(index)} placeholder="Insira as tags deste post"/>
 
