@@ -22,7 +22,6 @@ function ImageUpload(props: ImageUploadProps) {
 
       reader.addEventListener('load', async e => {
         setFilePreview(String(e.target?.result));
-        console.log("load");
         const imageUrl = await FileService.upload(file);
         props.onImageUpload(imageUrl);
       })

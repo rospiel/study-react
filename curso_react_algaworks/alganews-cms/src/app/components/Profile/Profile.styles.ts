@@ -10,10 +10,11 @@ export const Wrapper = styled(Link)`
   align-items: center;
   color: #274060;
 
-  div.picture {
+  img.picture {
     width: 48px;
     height: 48px;
     margin: 16px 24px 16px 16px;
+    object-fit: cover;
   }
 
   div p.name {

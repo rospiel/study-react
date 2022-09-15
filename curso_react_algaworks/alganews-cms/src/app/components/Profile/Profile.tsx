@@ -6,14 +6,14 @@ export interface ProfileProps {
   name: string
   description: string
   editorId: number
+  avatarUrl?: string;
 }
 
 export default function Profile (props: ProfileProps) {
   return (
     <P.Wrapper to={`/editores/${props.editorId}`}>
-      <div className="picture">
-        <Icon color="#274060" size="45px" path={mdiHelpCircle} />
-      </div>
+      <img className="picture" src={props.avatarUrl}alt="Foto perfil" />
+      
       <div>
         <p className="name">{props.name}</p>
         <p className="description">{props.description}</p>

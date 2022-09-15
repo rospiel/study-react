@@ -20,17 +20,14 @@ class FileService extends Service {
 
   static async upload(file: File) {
     const [extension] = file.name.split(".").slice(-1);
-    console.log(extension);
     const fileName = `${uuid()}.${extension}`;
-    console.log(fileName);
     const signedUrl = await FileService.getSignedUrl({
       fileName,
       contentLength: file.size
     });
 
-    console.log(signedUrl);
     await FileService.uploadFileToSignedUrl(signedUrl, file);
-
+    /* based on google storage documentation */
     return signedUrl.split('?')[0];
   }
 }
