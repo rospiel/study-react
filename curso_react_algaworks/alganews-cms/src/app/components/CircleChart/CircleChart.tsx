@@ -35,7 +35,7 @@ function CircleChart (props: CircleChartProps){
           <CC.Circle fill="none" cy={CENTER} cx={CENTER} r={RADIUS} stroke={STROKE_COLOR} strokeWidth={STROKE_WIDTH} strokeDasharray={CIRCUMFERENCE} strokeDashoffset={offset} />
         </CC.Svg>
         <CC.Percentage color={getThemeColor()}>
-          { props.progress }%
+          { Math.ceil(props.progress) }%
         </CC.Percentage>
       </CC.SvgWrapper>
       {

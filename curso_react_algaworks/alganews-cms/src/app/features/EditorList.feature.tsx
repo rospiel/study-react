@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
+import getEditorDescription from "../../core/utils/getEditorDescription"
 import { User } from "../../sdk/@types"
-import PostService from "../../sdk/services/Post.service"
 import UserService from "../../sdk/services/User.service"
 import Profile from "../components/Profile/Profile"
 
@@ -17,7 +17,7 @@ export default function EditorReport() {
     <EditorReportContainer>
       {
         editors.map(editor => {
-          return <Profile key={editor.id} editorId={editor.id} name={editor.name} description="Editor há X meses" avatarUrl={editor.avatarUrls.small} />
+          return <Profile key={editor.id} editorId={editor.id} name={editor.name} description={getEditorDescription(new Date(editor.createdAt))} avatarUrl={editor.avatarUrls.small} />
         })
       }
     </EditorReportContainer>  

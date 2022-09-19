@@ -1,13 +1,27 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { User } from "../../sdk/@types";
+import UserService from "../../sdk/services/User.service";
 import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
 
 export default function UserEarnings () {
+  const [user, setUser] = useState<User.Detailed>();
+
+  useEffect(() => {
+    UserService.getDetailedUser(6)
+    .then(setUser);
+  }, []);
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <UserEarningsContainer>
-      <ValueDescriptor isDefault={true} description="Ganhos no mês" value={69887.4} isCurrency={true} />
-      <ValueDescriptor isDefault={false} description="Ganhos no dia" value={100} isCurrency={true} />
-      <ValueDescriptor isDefault={false} description="Ganhos no ano" value={7869587.4} isCurrency={true} />
-      <ValueDescriptor isDefault={true} description="Total de palavras" value={7896} isCurrency={false} />
+      <ValueDescriptor isDefault={true} description="Ganhos no mês" value={user.metrics.monthlyEarnings} isCurrency={true} />
+      <ValueDescriptor isDefault={true} description="Ganhos na semana" value={user.metrics.weeklyEarnings} isCurrency={true} />
+      <ValueDescriptor isDefault={false} description="Ganhos de sempre" value={user.metrics.lifetimeEarnings} isCurrency={true} />
+      <ValueDescriptor isDefault={false} description="Total de palavras" value={user.metrics.lifetimeWords} isCurrency={false} />
     </UserEarningsContainer>
   )
 }

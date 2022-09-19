@@ -1,5 +1,10 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Head from "../../core/Head";
+import getEditorDescription from "../../core/utils/getEditorDescription";
+import { User } from "../../sdk/@types";
+import UserService from "../../sdk/services/User.service";
 import ErrorBoundary from "../components/ErrorBoundary";
 import FieldDescriptor from "../components/FieldDescriptor/FieldDescriptor";
 import Profile from "../components/Profile/Profile";
@@ -13,23 +18,39 @@ interface EditorProfileProps {
 }
 
 export default function EditorProfileView(props: EditorProfileProps) {
+  const params = useParams<{id: string}>();
+  const [editor, setEditor] = useState<User.EditorDetailed>();
+
+  useEffect(() => {
+    UserService.getExistingEditor(Number(params.id))
+    .then(setEditor)
+  }, [params.id])
+  
+  if (!editor) {
+    return null;
+  }
+
   return (
     <DefaultLayout>
       <Head title="Editor Profile" description="Tela com as informações do editor"></Head>
       <ErrorBoundary>
         <ProfileContainer isShowPersonalData={props.isShowPersonalData}>
-          <Profile name="Ana Castilho" description="criadora de conteúdo há 2 meses" editorId={1} />
+          <Profile avatarUrl={editor.avatarUrls.small} name={editor.name} description={getEditorDescription(new Date(editor.createdAt))} editorId={1} />
           <div className="profile">
             <div className="description">
-              Ana Castilho é especialista em recrutamento de desenvolvedores e ama escrever dicas para ajudar os devs a encontrarem a vaga certa para elas. Atualmente tem uma empresa de Recruitment e é redatora no alga content.
-              <div className="progressBar"><ProgressBar title="tech recruiting" progress={97} theme="secondary" width={340} /></div>
-              <div className="progressBar"><ProgressBar title="coaching" progress={75} theme="secondary" width={340} /></div>
-              <div className="progressBar"><ProgressBar title="java" progress={50} theme="secondary" width={340} /></div>
+              {editor.bio}
+              {
+                editor.skills?.map(skill => {
+                  return (
+                    <div className="progressBar"><ProgressBar title={skill.name} progress={skill.percentage} theme="secondary" width={340} /></div>
+                  )
+                })
+              }
             </div>
             <div className="details">
               <div className="address">
-                <FieldDescriptor label="cidade:" value="Vila Velha" />
-                <FieldDescriptor label="estado:" value="Espírito Santos" />
+                <FieldDescriptor label="cidade:" value={editor.location.city} />
+                <FieldDescriptor label="estado:" value={editor.location.state} />
               </div>
                 <div className="personalInfo">
                   <FieldDescriptor label="celular:" value="+55 27 91234-5678" />
