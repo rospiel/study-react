@@ -40,9 +40,9 @@ export default function EditorProfileView(props: EditorProfileProps) {
             <div className="description">
               {editor.bio}
               {
-                editor.skills?.map(skill => {
+                editor.skills?.map((skill, indice) => {
                   return (
-                    <div className="progressBar"><ProgressBar title={skill.name} progress={skill.percentage} theme="secondary" width={340} /></div>
+                    <div key={indice} className="progressBar"><ProgressBar title={skill.name} progress={skill.percentage} theme="secondary" width={340} /></div>
                   )
                 })
               }

@@ -20,7 +20,7 @@ useEffect(() => {
     {
       topTags.map((tag, indice) => {
         return (
-          <CircleChart progress={tag.percentage} size={88} caption={tag.tagName} theme={indice === 0 ? 'primary' : 'default'}/>
+          <CircleChart key={indice} progress={tag.percentage} size={88} caption={tag.tagName} theme={indice === 0 ? 'primary' : 'default'}/>
         )
       })
     }

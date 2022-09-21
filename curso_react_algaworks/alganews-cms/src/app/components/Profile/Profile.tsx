@@ -1,5 +1,3 @@
-import { mdiHelpCircle } from '@mdi/js';
-import Icon from '@mdi/react';
 import * as P from './Profile.styles';
 
 export interface ProfileProps {
