@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Head from "../../core/Head";
+import ErrorBoundary from "../components/ErrorBoundary";
 import PostsList from "../features/PostsList.feature";
 import UserEarnings from "../features/UserEarnings.feature";
 import UserMetrics from "../features/UserMetrics.feature";
@@ -11,12 +12,20 @@ export default function Home () {
     <DefaultLayout>
       <Head title="Home" description="Tela de entrada"></Head>
       <UserTopTagsEarningsContainer>
-        <UserTopTags />
+        <ErrorBoundary component="tags mais usadas">
+          <UserTopTags />
+        </ErrorBoundary>
+        
         <UserEarnings />
       </UserTopTagsEarningsContainer>
+      <ErrorBoundary component="performance">
+        <UserMetrics />  
+      </ErrorBoundary>
       
-      <UserMetrics />
-      <PostsList />
+      <ErrorBoundary component="lista de posts">
+        <PostsList />
+      </ErrorBoundary>
+      
     </DefaultLayout>
   )
 }

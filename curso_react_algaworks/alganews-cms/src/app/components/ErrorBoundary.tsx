@@ -3,7 +3,9 @@ import styled from "styled-components";
 import ErrorDisplay from "./ErrorDisplay/ErrorDisplay";
 import { transparentize } from 'polished';
 
-interface Props {}
+interface Props {
+  component?: string;
+}
 interface State {
   hasError: boolean;
   error?: {
@@ -28,7 +30,7 @@ class ErrorBoundary extends Component<Props, State> {
   public render() {
     return this.state.hasError ? 
     <Container>
-      <ErrorDisplay message={this.state.error?.message} small={true}/>
+      <ErrorDisplay title={`Erro ao renderizar ${this.props.component || 'componente'}`} message={this.state.error?.message} small={true}/>
     </Container>
      : this.props.children;
   }

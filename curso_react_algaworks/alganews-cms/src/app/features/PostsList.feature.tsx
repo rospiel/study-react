@@ -6,6 +6,7 @@ import { Column, useTable } from "react-table"
 import styled from "styled-components"
 import { Post } from "../../sdk/@types"
 import PostService from "../../sdk/services/Post.service"
+import { nonNull } from "../../sdk/utils/objectUtil"
 import Table from "../components/Table/Table"
 
 const Conversions = styled.div`
@@ -62,6 +63,7 @@ function getTitle(post: Post.Summary) {
 
 export default function PostsList () {
   const[posts, setPosts] = useState<Post.Paginated>();
+  const [error, setError] = useState<Error>();
   
   useEffect(() => {
     PostService.getAllPosts({
@@ -69,8 +71,16 @@ export default function PostsList () {
       size: 7, 
       showAll: true,
       sort: ['createdAt', 'desc']
-    }).then(setPosts)
+    })
+    .then(setPosts)
+    .catch(error => {
+      setError(new Error(error.message));
+    })
   }, []);
+
+  if (nonNull(error)) {
+    throw error;
+  }
 
   const columns = useMemo<Column<Post.Summary>[]>(
     () => [
