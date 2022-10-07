@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import convertEditorMonthlyEarningsToDataChartJs from "../../core/utils/convertEditorMonthlyEarningsToDataChartJs";
 import MetricService from "../../sdk/services/Metric.service";
 import Chart, { ChartProps } from "../components/Chart/Chart";
-import {nonNull} from "../../sdk/utils/objectUtil";
+import {isNull, nonNull} from "../../sdk/utils/objectUtil";
+import Skeleton from "react-loading-skeleton";
 
 export default function UserMetrics () {
    const [editorEarnings, setEditorEarnings] = useState<ChartProps['data']>();
@@ -23,11 +24,15 @@ export default function UserMetrics () {
       throw error;
    }
 
-   if (!editorEarnings) {
-      return null;
+   if (isNull(editorEarnings)) {
+      return (
+         <div>
+            <Skeleton height={227}/>
+         </div>
+      )
    }
 
    return (
-      <Chart title="Média de performance nos últimos 12 meses" data={editorEarnings} />
+      <Chart title="Média de performance nos últimos 12 meses" data={editorEarnings!} />
    )
 }

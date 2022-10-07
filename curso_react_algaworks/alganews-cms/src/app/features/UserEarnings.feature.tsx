@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import withBoundary from "../../core/hoc/withBoundary";
 import { User } from "../../sdk/@types";
@@ -23,7 +24,14 @@ function UserEarnings () {
   }
 
   if (isNull(user)) {
-    return null;
+    return (
+        <UserEarningsContainer>
+          <Skeleton height={40} width={150}/>
+          <Skeleton height={40} width={150}/>
+          <Skeleton height={40} width={150}/>
+          <Skeleton height={40} width={150}/>
+        </UserEarningsContainer>
+    )
   }
 
   return (

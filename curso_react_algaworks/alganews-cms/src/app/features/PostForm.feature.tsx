@@ -7,6 +7,7 @@ import PostService from "../../sdk/services/Post.service"
 import Button from "../components/Button/Button"
 import ImageUpload from "../components/ImageUpload"
 import Input from "../components/Input/Input"
+import Loading from "../components/Loading"
 import MarkdownEditor from "../components/MarkdownEditor"
 import TagInput from "../components/TagInput"
 import WordPriceCounter from "../components/WordPriceCounter"
@@ -22,6 +23,7 @@ export default function PostForm() {
   }
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    setPublishing(true);
     event.preventDefault();
     const newPost = {
       body, 
@@ -29,18 +31,26 @@ export default function PostForm() {
       tags: tags.map(tag => tag.text), 
       imageUrl
     }
-    const insertedPost = await PostService.insertPost(newPost);
-    info({title: 'Post salvo com sucesso', description: 'Você acabou de salvar o post, id gerado ' + insertedPost.id})
+
+    try {
+      const insertedPost = await PostService.insertPost(newPost);
+      info({title: 'Post salvo com sucesso', description: 'Você acabou de salvar o post, id gerado ' + insertedPost.id})
+    } finally {
+      setPublishing(false);
+    }
   }
   
   const [tags, setTags] = useState<Tag[]>([]);
   const [body, setBody] = useState('');
   const [title, setTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [publishing, setPublishing] = useState(false);
 
 
   return (
     <PostFormContainer onSubmit={event => handleFormSubmit(event)} >
+      <Loading show={publishing} />
+
       <Input label="título" placeholder="e.g.: Como fiquei rico aprendendo React" value={title} onChange={event => setTitle(event.currentTarget.value)} />
       <ImageUpload onImageUpload={setImageUrl} label="Thumbnail do post" />
       <MarkdownEditor onChange={setBody} />

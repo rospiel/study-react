@@ -2,11 +2,12 @@ import { mdiOpenInNew } from "@mdi/js"
 import Icon from "@mdi/react"
 import { format } from "date-fns/esm"
 import { useEffect, useMemo, useState } from "react"
+import Skeleton from "react-loading-skeleton"
 import { Column, useTable } from "react-table"
 import styled from "styled-components"
 import { Post } from "../../sdk/@types"
 import PostService from "../../sdk/services/Post.service"
-import { nonNull } from "../../sdk/utils/objectUtil"
+import { isNull, nonNull } from "../../sdk/utils/objectUtil"
 import Table from "../components/Table/Table"
 
 const Conversions = styled.div`
@@ -132,6 +133,14 @@ export default function PostsList () {
   );
 
   const instance = useTable<Post.Summary>({ data: posts?.content || [], columns });
+
+  if (isNull(posts)) {
+    return (
+       <div>
+          <Skeleton height={32}/>
+       </div>
+    )
+  }
 
   return (
     <Table instance={instance}/>
