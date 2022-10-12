@@ -3,11 +3,12 @@ import Icon from "@mdi/react"
 import { format } from "date-fns/esm"
 import { useEffect, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
-import { Column, useTable } from "react-table"
+import { Column, usePagination, useTable } from "react-table"
 import styled from "styled-components"
 import { Post } from "../../sdk/@types"
 import PostService from "../../sdk/services/Post.service"
 import { isNull, nonNull } from "../../sdk/utils/objectUtil"
+import Loading from "../components/Loading"
 import Table from "../components/Table/Table"
 
 const Conversions = styled.div`
@@ -65,19 +66,24 @@ function getTitle(post: Post.Summary) {
 export default function PostsList () {
   const[posts, setPosts] = useState<Post.Paginated>();
   const [error, setError] = useState<Error>();
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
+    setLoading(true);
     PostService.getAllPosts({
-      page: 0,
-      size: 7, 
+      page,
+      size: 2, 
       showAll: true,
       sort: ['createdAt', 'desc']
     })
     .then(setPosts)
     .catch(error => {
       setError(new Error(error.message));
+    }).finally(() => {
+      setLoading(false);
     })
-  }, []);
+  }, [page]);
 
   if (nonNull(error)) {
     throw error;
@@ -132,7 +138,12 @@ export default function PostsList () {
     []
   );
 
-  const instance = useTable<Post.Summary>({ data: posts?.content || [], columns });
+  const instance = useTable<Post.Summary>({ data: posts?.content || [], 
+    columns, 
+    manualPagination: true, 
+    initialState: { pageIndex: 0 }, 
+    pageCount: posts?.totalPages
+  }, usePagination);
 
   if (isNull(posts)) {
     return (
@@ -143,6 +154,9 @@ export default function PostsList () {
   }
 
   return (
-    <Table instance={instance}/>
+    <>
+      <Loading show={loading} />
+      <Table instance={instance} onPaginate={setPage} />
+    </>
   )
 }
