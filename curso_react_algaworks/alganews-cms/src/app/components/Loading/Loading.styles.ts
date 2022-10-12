@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoadingContainer = styled.div`
+export const LoadingContainer = styled.div<{blur?: boolean}>`
   position: fixed;
   top: 0;
   left: 0;
@@ -11,6 +11,13 @@ export const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  animation: ${({ blur }) => (blur ? 'animationBlur 5s infinite' : '')};
+
+  @keyframes animationBlur {
+    from {backdrop-filter: blur(1px);}
+    to {backdrop-filter: blur(5px);;}
+  }
   
   .lds-ring {
     display: inline-block;

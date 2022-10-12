@@ -3,6 +3,7 @@ import { LoadingContainer } from "./Loading.styles";
 
 interface LoadingProps {
   show?: boolean
+  blur?: boolean
 }
 
 export default function Loading(props: LoadingProps) {
@@ -12,7 +13,7 @@ export default function Loading(props: LoadingProps) {
   }
 
   return (
-    <LoadingContainer>
+    <LoadingContainer blur={props.blur}>
       <div className="lds-ring">
         <div></div>
         <div></div>
