@@ -73,7 +73,7 @@ export default function PostsList () {
     setLoading(true);
     PostService.getAllPosts({
       page,
-      size: 2, 
+      size: 1, 
       showAll: true,
       sort: ['createdAt', 'desc']
     })

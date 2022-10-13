@@ -1,7 +1,9 @@
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import Icon from "@mdi/react";
 import { useEffect } from "react";
+import ReactPaginate from "react-paginate";
 import { TableInstance } from "react-table";
-import { isFalse, nonNull } from "../../../sdk/utils/objectUtil";
-import Button from "../Button/Button";
+import { nonNull } from "../../../sdk/utils/objectUtil";
 import NoData from "../NoData/NoData";
 import * as T from './Table.styles';
 
@@ -19,13 +21,8 @@ export default function Table<T extends Object> ({ instance, onPaginate }: Table
     headerGroups,
     rows, 
     /* PAGINATION */
-    canPreviousPage, 
-    canNextPage, 
-    pageOptions, 
     pageCount, 
     gotoPage, 
-    nextPage, 
-    previousPage, 
     state: {
       pageIndex,
     }
@@ -83,11 +80,7 @@ export default function Table<T extends Object> ({ instance, onPaginate }: Table
       }
 
       <T.TablePagination>
-        <Button variant="primary" label="Primeira página" onClick={() => gotoPage(0)} disabled={isFalse(canPreviousPage)} />
-        <Button variant="primary" label="Página anterior" onClick={previousPage} disabled={isFalse(canPreviousPage)} />
-        <Button variant="primary" label="Próxima página" onClick={nextPage} disabled={isFalse(canNextPage)} />
-        <Button variant="primary" label="Última página" onClick={() => gotoPage(pageCount - 1)} disabled={isFalse(canNextPage)} />
-        <span>Página {pageIndex + 1} de {pageOptions.length}</span>
+        <ReactPaginate pageCount={pageCount} onPageChange={page => gotoPage(page.selected)} marginPagesDisplayed={0} pageRangeDisplayed={3} nextLabel={<Icon path={mdiChevronRight} size={"16px"} />} previousLabel={<Icon path={mdiChevronLeft} size={"16px"} />} />
       </T.TablePagination>
     </>
   )
