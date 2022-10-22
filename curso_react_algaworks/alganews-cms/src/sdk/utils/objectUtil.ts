@@ -1,5 +1,4 @@
 export function isNull(value: any): boolean {
-  console.log(value);
   return (typeof value === 'object' && value === null) || value === undefined;
 }
 
@@ -8,7 +7,7 @@ export function nonNull(value: any): boolean {
 }
 
 export function isTrue(value: boolean): boolean {
-  return nonNull(value) && value !== false;
+  return nonNull(value) && value === true;
 }
 
 export function isFalse(value: boolean): boolean {

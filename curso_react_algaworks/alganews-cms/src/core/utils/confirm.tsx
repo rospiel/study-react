@@ -24,7 +24,7 @@ export default function confirm(props: ConfirmProps) {
     onClose();
   }
 
-  /* Allow call confirmAlert from another confirmAlert - event loop macrotask */
+  /* Allow call confirmAlert from another confirmAlert */
   setTimeout(() => {
     confirmAlert({
       overlayClassName: 'confirma-overlay',
