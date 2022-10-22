@@ -16,7 +16,7 @@ export const LoadingContainer = styled.div<{blur?: boolean}>`
 
   @keyframes animationBlur {
     from {backdrop-filter: blur(1px);}
-    to {backdrop-filter: blur(5px);;}
+    to {backdrop-filter: blur(5px);}
   }
   
   .lds-ring {

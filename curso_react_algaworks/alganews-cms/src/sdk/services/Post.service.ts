@@ -13,10 +13,28 @@ class PostService extends Service {
     .then(this.getData);
   }
 
+  static getExistingPost(id: number) {
+    return this.Http
+      .get<Post.Detailed>(`${this.REQUEST_MAPPING}/${id}`)
+      .then(this.getData)
+  }
+
+  static publishExistingPost(id: number) {
+    return this.Http
+      .put<{}>(`${this.REQUEST_MAPPING}/${id}/publishing`)
+      .then(this.getData);
+  }
+
   static insertPost(post: Post.Input) {
     return this.Http
     .post<Post.Detailed>(this.REQUEST_MAPPING, post)
     .then(this.getData)
+  }
+
+  static updateExistingPost(postId: number, post: Post.Input) {
+    return this.Http
+      .put<Post.Detailed>(`/posts/${postId}`, post)
+      .then(this.getData);
   }
 }
 

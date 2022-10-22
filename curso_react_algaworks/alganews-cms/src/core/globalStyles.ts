@@ -21,4 +21,8 @@ export default createGlobalStyle`
   .info-overlay {
     background-color: ${transparentize(0.2, '#F3F8FA')};
   }
+
+  .modal-overlay {
+    backdrop-filter: blur(1px);
+  }
 `

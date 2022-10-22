@@ -5,7 +5,7 @@ import Confirm from '../../app/components/Confirm/Confirm';
 interface ConfirmProps {
   onConfirm?: () => any
   onCancel?: () => any
-  title: string
+  question: string
 }
 
 export default function confirm(props: ConfirmProps) {
@@ -30,7 +30,7 @@ export default function confirm(props: ConfirmProps) {
       overlayClassName: 'confirma-overlay',
       customUI: ({ onClose }) => {
         return (
-          <Confirm question={props.title} 
+          <Confirm question={props.question} 
           onConfirm={() => confirm(onClose)} 
           onCancel={() => cancel(onClose)} />
         );

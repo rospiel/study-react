@@ -24,7 +24,7 @@ function DefaultLayout (props: DefaultLayoutProps) {
         </DL.FeaturedContent>
 
         <DL.Aside>
-          <SessionController name="Rodrigo Santos" description="Developer" onLogout={() => {confirm({title: 'Você deseja deslogar?'})}} />
+          <SessionController name="Rodrigo Santos" description="Developer" onLogout={() => {confirm({question: 'Você deseja deslogar?'})}} />
         </DL.Aside>
       </DL.Main>
     </DL.Wrapper>

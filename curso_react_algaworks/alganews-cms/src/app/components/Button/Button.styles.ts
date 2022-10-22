@@ -16,7 +16,8 @@ const THEME = {
     `,
     disabled: {
       color: COLORS.red,
-      bg: transparentize(0.75, COLORS.red)
+      bg: transparentize(0.75, COLORS.red),
+      opacity: 0.5
     }
   },
   primary: {

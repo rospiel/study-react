@@ -5,11 +5,14 @@ import { useEffect, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import { Column, usePagination, useTable } from "react-table"
 import styled from "styled-components"
+import modal from "../../core/utils/modal"
 import { Post } from "../../sdk/@types"
 import PostService from "../../sdk/services/Post.service"
 import { isNull, nonNull } from "../../sdk/utils/objectUtil"
 import Loading from "../components/Loading"
+import PostTitleAnchor from "../components/PostTitleAnchor"
 import Table from "../components/Table/Table"
+import PostPreview from "../views/PostPreview.view"
 
 const Conversions = styled.div`
   display: flex;
@@ -34,7 +37,8 @@ const Title = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-
+  max-width: 270px;
+  
   img.avatar {
     width: 24px;
     height: 24px;
@@ -54,11 +58,16 @@ function getIcon() {
   )
 }
 
+function handlePostClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, id: number): void {
+  event.preventDefault();
+  modal({ children: <PostPreview postId={id} /> });
+}
+
 function getTitle(post: Post.Summary) {
   return (
     <>
       <img className='avatar' src={post.editor.avatarUrls.small} alt={post.editor.name} title={post.editor.name} />
-      {post.title}
+      <PostTitleAnchor title={post.title}  href={`/posts/${post.id}`} onClick={event => handlePostClick(event, post.id) } >{post.title}</PostTitleAnchor>
     </>
   )
 }  
