@@ -3,7 +3,7 @@ import Icon from "@mdi/react";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { TableInstance } from "react-table";
-import { nonNull } from "../../../sdk/utils/objectUtil";
+import { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import NoData from "../NoData/NoData";
 import * as T from './Table.styles';
 

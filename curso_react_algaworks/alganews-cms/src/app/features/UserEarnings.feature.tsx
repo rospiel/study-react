@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { User, UserService } from "rospiel-react_alganews-sdk";
+import isNull, { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import styled from "styled-components";
 import withBoundary from "../../core/hoc/withBoundary";
-import { User } from "../../sdk/@types";
-import UserService from "../../sdk/services/User.service";
-import { isNull, nonNull } from "../../sdk/utils/objectUtil";
 import ValueDescriptor from "../components/ValueDescriptor/ValueDescriptor";
 
 function UserEarnings () {

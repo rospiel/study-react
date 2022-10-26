@@ -1,7 +1,7 @@
 import { ChartProps } from "../../app/components/Chart/Chart";
-import { Metric } from "../../sdk/@types";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { Metric } from "rospiel-react_alganews-sdk";
 
 function convertEditorMonthlyEarningsToDataChartJs(editorEarnings: Metric.EditorMonthlyEarnings): ChartProps['data'] {
   const labels: string[] = [];

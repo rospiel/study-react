@@ -1,4 +1,4 @@
-import { isFalse, isNull } from "../../../sdk/utils/objectUtil";
+import isNull, { isFalse } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import { LoadingContainer } from "./Loading.styles";
 
 interface LoadingProps {

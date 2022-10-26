@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserService, User } from "rospiel-react_alganews-sdk";
 import styled from "styled-components";
 import Head from "../../core/Head";
 import getEditorDescription from "../../core/utils/getEditorDescription";
-import { User } from "../../sdk/@types";
-import UserService from "../../sdk/services/User.service";
 import ErrorBoundary from "../components/ErrorBoundary";
 import FieldDescriptor from "../components/FieldDescriptor/FieldDescriptor";
 import Profile from "../components/Profile/Profile";

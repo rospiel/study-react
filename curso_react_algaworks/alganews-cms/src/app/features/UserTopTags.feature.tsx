@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { Metric, MetricService } from "rospiel-react_alganews-sdk";
+import isNull, { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import styled from "styled-components";
-import { Metric } from "../../sdk/@types";
-import MetricService from "../../sdk/services/Metric.service";
-import { isFalse, isNull, nonNull } from "../../sdk/utils/objectUtil";
 import CircleChart from "../components/CircleChart";
 
 export default function UserTopTags () {

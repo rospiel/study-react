@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
+import { User, UserService } from "rospiel-react_alganews-sdk";
 import styled from "styled-components"
 import getEditorDescription from "../../core/utils/getEditorDescription"
-import { User } from "../../sdk/@types"
-import UserService from "../../sdk/services/User.service"
 import Profile from "../components/Profile/Profile"
 
 export default function EditorReport() {

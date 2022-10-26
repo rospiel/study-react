@@ -1,8 +1,8 @@
 import MarkdownIt from "markdown-it";
 import MdEditor, { Plugins } from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
-import FileService from "../../../sdk/services/File.service";
-import { isTrue } from "../../../sdk/utils/objectUtil";
+import { FileService } from "rospiel-react_alganews-sdk";
+import { isTrue } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 
 MdEditor.unuse(Plugins.FontUnderline);
 const parser = new MarkdownIt();

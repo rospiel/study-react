@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from "react"
 import convertEditorMonthlyEarningsToDataChartJs from "../../core/utils/convertEditorMonthlyEarningsToDataChartJs";
-import MetricService from "../../sdk/services/Metric.service";
 import Chart, { ChartProps } from "../components/Chart/Chart";
-import {isNull, nonNull} from "../../sdk/utils/objectUtil";
 import Skeleton from "react-loading-skeleton";
+import { MetricService } from "rospiel-react_alganews-sdk";
+import isNull, { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 
 export default function UserMetrics () {
    const [editorEarnings, setEditorEarnings] = useState<ChartProps['data']>();
