@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { editorReducer } from "./Editor.store";
+import { PostsReducer } from "./Posts.store";
 
 const store = configureStore({
   reducer: {
-    editor: editorReducer
+    editor: editorReducer,
+    posts: PostsReducer
   }
 })
 

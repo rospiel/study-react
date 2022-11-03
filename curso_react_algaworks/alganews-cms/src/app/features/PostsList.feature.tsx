@@ -3,16 +3,19 @@ import Icon from "@mdi/react"
 import { format } from "date-fns/esm"
 import { useEffect, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
+import { useDispatch, useSelector } from "react-redux"
 import { Column, usePagination, useTable } from "react-table"
 import { Post, PostService } from "rospiel-react_alganews-sdk"
 import isNull, { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil"
 import styled from "styled-components"
+import { RootState } from "../../core/store"
 import modal from "../../core/utils/modal"
 
 import Loading from "../components/Loading"
 import PostTitleAnchor from "../components/PostTitleAnchor"
 import Table from "../components/Table/Table"
 import PostPreview from "../views/PostPreview.view"
+import * as  PostsActions from "../../core/store/Posts.store";
 
 const Conversions = styled.div`
   display: flex;
@@ -73,26 +76,21 @@ function getTitle(post: Post.Summary) {
 }  
 
 export default function PostsList () {
-  const[posts, setPosts] = useState<Post.Paginated>();
+  const dispatch = useDispatch();
+  const posts = useSelector((state: RootState) => state.posts.posts);
   const [error, setError] = useState<Error>();
   const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((state: RootState) => state.posts.fetching);
   
   useEffect(() => {
-    setLoading(true);
-    PostService.getAllPosts({
-      page,
-      size: 1, 
-      showAll: true,
-      sort: ['createdAt', 'desc']
-    })
-    .then(setPosts)
-    .catch(error => {
-      setError(new Error(error.message));
-    }).finally(() => {
-      setLoading(false);
-    })
-  }, [page]);
+    const query = {} as Post.Query;
+    query.page = page;
+    query.size = 1;
+    query.showAll = true;
+    query.sort = ["createdAt", "desc"];
+    
+    dispatch(PostsActions.fetchAllPosts(query))
+  }, [dispatch, page]);
 
   if (nonNull(error)) {
     throw error;
