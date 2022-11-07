@@ -1,12 +1,14 @@
+import { transparentize } from "polished"
 import styled from "styled-components"
 import { FOOTER_HEIGHT } from "../_constants"
+import Logo from "./Logo"
 
 export default function Footer(props: any) {
   return (
     <Container>
       <div className="containerHeader">
-        <span>LOGO</span>
-        <span>CRÉDITOS</span>
+        <Logo />
+        <p className="credits" >todos os direitos reservados</p>
       </div>
     </Container>
   )
@@ -26,8 +28,13 @@ const Container = styled.footer`
     flex-direction: column;
     gap: 16px;
     max-width: 848px;
-    height: 56px;
+    height: 100%;
     margin: auto;
+  }
+
+  .credits {
+    font-size: 18px;
+    color: ${p => transparentize(0.6, p.theme.activeElementForeground)};
   }
 `
 

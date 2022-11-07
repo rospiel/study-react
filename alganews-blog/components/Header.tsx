@@ -1,13 +1,15 @@
 import { transparentize } from "polished"
 import styled from "styled-components"
 import { HEADER_HEIGHT } from "../_constants"
+import Logo from "./Logo"
+import NavBar from "./NavBar"
 
 export default function Header(props: any) {
   return (
     <Container>
       <div className="containerHeader">
-        <span>LOGO</span>
-        <span>NAVBAR</span>
+        <Logo />
+        <NavBar />
       </div>
     </Container>
   )
@@ -20,6 +22,7 @@ const Container = styled.div`
 
   width: 100%;
   height: ${HEADER_HEIGHT}px;
+  padding: 0 16px;
 
   .containerHeader {
     display: flex;
