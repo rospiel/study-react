@@ -3,7 +3,7 @@ import Router from 'next/router';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import { Post, PostService } from 'rospiel-react_alganews-sdk'; 
-import isNull, { isFalse, nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
+import isNull, { isFalse } from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import PageGrid from '../components/PageGrid';
 
 import PostFeature from '../components/Post.feature';
