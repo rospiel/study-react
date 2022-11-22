@@ -2,6 +2,7 @@ import Link from "next/link";
 import { transparentize } from "polished";
 import { Post } from "rospiel-react_alganews-sdk";
 import styled from "styled-components";
+import formatPostDate from "../core/utils/formatPostDate";
 import Avatar from "./Avatar";
 
 interface PostProps {
@@ -25,7 +26,7 @@ export default function PostFeature(props: PostProps) {
             <Avatar src={props.postSummary.editor.avatarUrls.small} alt="imagem do editor" />
             <div className="description">
               <p className="name">{props.postSummary.editor.name}</p>
-              <p className="postDate">há 3 dias</p>
+              <p className="postDate">{formatPostDate(props.postSummary.createdAt)}</p>
             </div>
           </div>
           <h2>{props.postSummary.title}</h2>
@@ -73,7 +74,6 @@ const Container = styled.a<{ image: string }>`
     background-image: url(${p => p.image});
     position: absolute;
     inset: 0;
-    background-color: yellow;
     z-index: 0;
     opacity: 0.05;
   }

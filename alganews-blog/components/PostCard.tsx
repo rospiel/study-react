@@ -3,6 +3,7 @@ import Link from "next/link";
 import { transparentize } from "polished";
 import { Post } from "rospiel-react_alganews-sdk";
 import styled from "styled-components";
+import formatPostDate from "../core/utils/formatPostDate";
 
 interface PostCardProps {
   post: Post.Summary
@@ -17,7 +18,7 @@ export default function PostCard(props: PostCardProps) {
           <div className="editor">
             <EditorImage className="avatar" src={props.post.editor.avatarUrls.small} alt="imagem do editor" width={64} height={64} />
           </div>
-          <p className="publishDate">ha 3 dias</p>
+          <p className="publishDate">{formatPostDate(props.post.createdAt)}</p>
           <h2 className="title">{props.post.title}</h2>
         </div>
         
