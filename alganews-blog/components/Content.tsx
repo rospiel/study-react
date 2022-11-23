@@ -18,6 +18,11 @@ export default function Content(props: ContentProps) {
 
 const MainContainer = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px);
+  margin-top: ${HEADER_HEIGHT}px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: ${HEADER_HEIGHT}px;
+  }
 
   .contentContainer {
     max-width: 848px;

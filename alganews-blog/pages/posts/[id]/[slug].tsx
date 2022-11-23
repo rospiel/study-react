@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { DiscussionEmbed } from "disqus-react";
 import { Post, PostService } from "rospiel-react_alganews-sdk";
 import isNull from "rospiel-react_alganews-sdk/dist/utils/objectUtil";
 import { ResourceNotFoundError } from "rospiel-react_alganews-sdk/dist/errors";
@@ -22,6 +23,8 @@ function isInvalidParamNumber(param: any): boolean {
 }
 
 export default function PostPage(props: PostProps) {
+  const host = "http://localhost:3000";
+
   return (
     <>
       <Head>
@@ -32,11 +35,20 @@ export default function PostPage(props: PostProps) {
         <meta property="og:type" content="article" />
         <meta property="og:image" content={props.post!.imageUrls.medium} />
         <title>{props.post!.title} - AlgaNews</title>
-        <link rel="canonical" href={`http://localhost:3000/posts/${props.post!.id}/${props.post!.slug}`}/>
+        <link rel="canonical" href={`${host}/posts/${props.post!.id}/${props.post!.slug}`}/>
       </Head>
       <PostHeader createdAt={props.post!.createdAt!} editor={props.post!.editor.avatarUrls.small} thumbnail={props.post!.imageUrls.medium} title={props.post!.title!} />
 
       <Markdown body={props.post?.body!} />
+      <DiscussionEmbed
+            shortname="study-react"
+            config={{
+              url: `${host}/${props.post?.id}/${props.post?.slug}`,
+              identifier: String(props.post!.id),
+              title: props.post!.title,
+              language: "pt_BR",
+            }}
+          />
     </>
   )
 }
@@ -62,7 +74,6 @@ export const getServerSideProps: GetServerSideProps<PostProps, Params> = async (
   } catch (error) {
     console.log("Error during searching post of id.: " + params!.id);
     console.log(error);
-
 
     if (error instanceof ResourceNotFoundError) {
       return { notFound: true };

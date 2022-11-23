@@ -54,7 +54,7 @@ function redirect(context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData
 }
 
 function isValidPageNumberAndRedirect(page: any, context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>): boolean {
-  const value = Number(page);
+  const value = page ? Number(page) : 1;
   if (isNaN(value) || value < 1) {
     redirect(context);
     return false;
