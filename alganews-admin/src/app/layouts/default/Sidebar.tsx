@@ -1,53 +1,126 @@
 import {
   UserOutlined,
   LaptopOutlined,
-  NotificationOutlined,
+  DiffOutlined,
+  HomeOutlined,
+  TableOutlined,
+  PlusCircleOutlined,
+  FallOutlined,
+  RiseOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
+import {
+  Link,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 
-const { SubMenu } = Menu;
 const { Sider } = Layout;
 
 export default function Sidebar() {
+  const history = useHistory();
+  const location = useLocation();
+
+  const subMenuUsers = {
+    label: "Usuários",
+    key: "usuários",
+    icon: <UserOutlined />,
+    children: [
+      {
+        label: <Link to={"/usuarios"}>Consulta</Link>,
+        key: "/usuarios",
+        icon: <TableOutlined />,
+        onClick: () => history.push("/usuarios"),
+      },
+      {
+        label: (
+          <Link to={"/usuarios/cadastro"}>Cadastro</Link>
+        ),
+        key: "/usuarios/cadastro",
+        icon: <PlusCircleOutlined />,
+        onClick: () => history.push("/usuarios/cadastro"),
+      },
+    ],
+  };
+
+  const subMenuPayments = {
+    label: "Pagamentos",
+    key: "pagamentos",
+    icon: <LaptopOutlined />,
+    children: [
+      {
+        label: <Link to={"/pagamentos"}>Consulta</Link>,
+        key: "/pagamentos",
+        icon: <TableOutlined />,
+        onClick: () => history.push("/pagamentos"),
+      },
+      {
+        label: (
+          <Link to={"/pagamentos/cadastro"}>Cadastro</Link>
+        ),
+        key: "/pagamentos/cadastro",
+        icon: <PlusCircleOutlined />,
+        onClick: () => history.push("/pagamentos/cadastro"),
+      },
+    ],
+  };
+
+  const subMenuCashFlow = {
+    label: "fluxo-de-caixa",
+    key: "FluxoDeCaixa",
+    icon: <DiffOutlined />,
+    children: [
+      {
+        label: (
+          <Link to={"/fluxo-de-caixa/despesas"}>
+            Despesa
+          </Link>
+        ),
+        key: "/fluxo-de-caixa/despesas",
+        icon: <FallOutlined />,
+        onClick: () =>
+          history.push("/fluxo-de-caixa/despesas"),
+      },
+      {
+        label: (
+          <Link to={"/fluxo-de-caixa/receitas"}>
+            Receita
+          </Link>
+        ),
+        key: "/fluxo-de-caixa/receitas",
+        icon: <RiseOutlined />,
+        onClick: () =>
+          history.push("/fluxo-de-caixa/receitas"),
+      },
+    ],
+  };
+
+  const items = [
+    {
+      label: <Link to={"/"}>Home</Link>,
+      key: "Home",
+      icon: <HomeOutlined />,
+      onClick: () => history.push("/"),
+    },
+    subMenuUsers,
+    subMenuPayments,
+    subMenuCashFlow,
+  ];
+
   return (
-    <Sider width={200} className="site-layout-background">
+    <Sider
+      width={200}
+      className="site-layout-background"
+      breakpoint="lg"
+      collapsedWidth={0}
+    >
       <Menu
+        items={items}
         mode="inline"
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
+        defaultSelectedKeys={[location.pathname]}
+        defaultOpenKeys={[location.pathname.split("/")[1]]}
         style={{ height: "100%", borderRight: 0 }}
-      >
-        <SubMenu
-          key="sub1"
-          icon={<UserOutlined />}
-          title="subnav 1"
-        >
-          <Menu.Item key="1">option1</Menu.Item>
-          <Menu.Item key="2">option2</Menu.Item>
-          <Menu.Item key="3">option3</Menu.Item>
-          <Menu.Item key="4">option4</Menu.Item>
-        </SubMenu>
-        <SubMenu
-          key="sub2"
-          icon={<LaptopOutlined />}
-          title="subnav 2"
-        >
-          <Menu.Item key="5">option5</Menu.Item>
-          <Menu.Item key="6">option6</Menu.Item>
-          <Menu.Item key="7">option7</Menu.Item>
-          <Menu.Item key="8">option8</Menu.Item>
-        </SubMenu>
-        <SubMenu
-          key="sub3"
-          icon={<NotificationOutlined />}
-          title="subnav 3"
-        >
-          <Menu.Item key="9">option9</Menu.Item>
-          <Menu.Item key="10">option10</Menu.Item>
-          <Menu.Item key="11">option11</Menu.Item>
-          <Menu.Item key="12">option12</Menu.Item>
-        </SubMenu>
-      </Menu>
+      />
     </Sider>
   );
 }
