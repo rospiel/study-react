@@ -5,6 +5,10 @@ export const fetchAllPosts = createAsyncThunk("posts/fetchAllPosts", async funct
   return PostService.getAllPosts(search);
 });
 
+export const save = createAsyncThunk("posts/save", async function save(post: Post.Input) {
+  PostService.insertPost(post);
+})
+
 interface PostsStoreState {
   fetching: boolean
   posts: Post.Paginated
@@ -15,9 +19,9 @@ const initialState = {} as PostsStoreState;
 initialState.fetching = false;
 
 export const PostsReducer = createReducer(initialState, (builder) => {
-  const pendingActions = isPending(fetchAllPosts);
-  const fulfilledActions = isFulfilled(fetchAllPosts);
-  const rejectedActions = isRejected(fetchAllPosts);
+  const pendingActions = isPending(fetchAllPosts, save);
+  const fulfilledActions = isFulfilled(fetchAllPosts, save);
+  const rejectedActions = isRejected(fetchAllPosts, save);
 
   builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
     state.posts = action.payload;

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import { useDispatch, useSelector } from "react-redux"
 import { Column, usePagination, useTable } from "react-table"
-import { Post, PostService } from "rospiel-react_alganews-sdk"
+import { Post } from "rospiel-react_alganews-sdk"
 import isNull, { nonNull } from "rospiel-react_alganews-sdk/dist/utils/objectUtil"
 import styled from "styled-components"
 import { RootState } from "../../core/store"
@@ -89,7 +89,7 @@ export default function PostsList () {
     query.showAll = true;
     query.sort = ["createdAt", "desc"];
     
-    dispatch(PostsActions.fetchAllPosts(query))
+    dispatch(PostsActions.fetchAllPosts(query));
   }, [dispatch, page]);
 
   if (nonNull(error)) {

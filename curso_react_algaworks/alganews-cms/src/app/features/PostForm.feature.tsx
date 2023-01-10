@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom'
 import { Tag } from "react-tag-input"
 import { Post, PostService } from "rospiel-react_alganews-sdk"
@@ -13,6 +14,8 @@ import Loading from "../components/Loading"
 import MarkdownEditor from "../components/MarkdownEditor"
 import TagInput from "../components/TagInput"
 import WordPriceCounter from "../components/WordPriceCounter"
+import * as  PostsActions from "../../core/store/Posts.store";
+import { RootState } from "../../core/store"
 
 interface PostFormProps {
   postId?: number
@@ -60,6 +63,8 @@ export default function PostForm(props: PostFormProps) {
   const [imageUrl, setImageUrl] = useState('');
   const [publishing, setPublishing] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+  const loading = useSelector((state: RootState) => state.posts.fetching);
 
   useEffect(() => {
     if (nonNull(props.postId)) {
@@ -74,8 +79,17 @@ export default function PostForm(props: PostFormProps) {
     newPost.tags = tags.map(tag => tag.text);
     newPost.imageUrl = imageUrl;
     
-    await PostService.insertPost(newPost);
-    info({title: 'Post salvo com sucesso', description: 'Você acabou de     salvar o post'});
+    
+    dispatch(PostsActions.save(newPost));
+    
+    info({ title: 'Post salvo com sucesso', description: 'Você acabou de     salvar o post' });
+    const query = {} as Post.Query;
+    query.page = 0;
+    query.size = 1;
+    query.showAll = true;
+    query.sort = ["createdAt", "desc"];
+    
+    //dispatch(PostsActions.fetchAllPosts(query));
   }
 
   async function update(postId: number) {
@@ -91,7 +105,7 @@ export default function PostForm(props: PostFormProps) {
 
   return (
     <PostFormContainer onSubmit={event => handleFormSubmit(event)} >
-      <Loading show={publishing} />
+      <Loading show={loading} />
 
       <Input label="título" placeholder="e.g.: Como fiquei rico aprendendo React" value={title} onChange={event => setTitle(event.currentTarget.value)} />
       <ImageUpload onImageUpload={setImageUrl} label="Thumbnail do post" preview={imageUrl} />
