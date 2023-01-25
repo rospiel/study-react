@@ -19,9 +19,10 @@ export default class AuthService {
   static readonly ACCESS_TOKEN = "accessToken";
   static readonly REFRESH_TOKEN = "refreshToken";
   static readonly CODE_VERIFIER = "codeVerifier";
-  static readonly GRANT_TYPE = "authorization_code";
+  static readonly GRANT_TYPE_AUTHORIZATION_CODE = "authorization_code";
   static readonly CLIENT_ID = "alganews-admin";
   static readonly REQUEST_MAPPING_OAUTH = "/oauth/";
+  static readonly APP_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
 
   public static async getFirstAccessToken(config: {
     code: string | null;
@@ -31,14 +32,30 @@ export default class AuthService {
     const data = {
       code: config.code,
       code_verifier: config.codeVerifier,
-      grant_type: this.GRANT_TYPE,
+      grant_type: this.GRANT_TYPE_AUTHORIZATION_CODE,
       client_id: this.CLIENT_ID,
       redirect_uri: config.redirectUri,
     };
 
     const encodedData = queryString.stringify(data);
 
-    return authServer.post<OAuthAuthorizationTokenResponse>(this.REQUEST_MAPPING_OAUTH.concat("token"), encodedData, {headers: {"Content-Type": "application/x-www-form-urlencoded"}}).then(response => response.data);
+    return authServer.post<OAuthAuthorizationTokenResponse>(this.REQUEST_MAPPING_OAUTH.concat("token"), encodedData, {headers: {"Content-Type": this.APP_X_WWW_FORM_URLENCODED}}).then(response => response.data);
+  }
+
+  public static async getNewToken(config: {
+    refreshToken: string,
+    codeVerifier: string
+  }) {
+    const data = {
+      refresh_token: config.refreshToken,
+      code_verifier: config.codeVerifier,
+      grant_type: 'refresh_token',
+      client_id: this.CLIENT_ID
+    };
+
+    const encodedData = queryString.stringify(data);
+
+    return authServer.post<OAuthAuthorizationTokenResponse>(this.REQUEST_MAPPING_OAUTH.concat("token"), encodedData, { headers: { "Content-Type": this.APP_X_WWW_FORM_URLENCODED } }).then(response => response.data);
   }
 
   public static getLoginScreenUrl(codeChallenge: string): string {
@@ -48,7 +65,7 @@ export default class AuthService {
       redirect_uri: `${window.location.origin}/authorize`,
       code_challenge: codeChallenge,
       code_challenge_method: "S256",
-      grant_type: this.GRANT_TYPE,
+      grant_type: this.GRANT_TYPE_AUTHORIZATION_CODE,
     })
 
     return `http://localhost:8081${this.REQUEST_MAPPING_OAUTH}authorize?${config}`;

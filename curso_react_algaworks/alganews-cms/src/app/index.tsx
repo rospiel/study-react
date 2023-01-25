@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import info from '../core/utils/info';
 import PostEdit from './views/PostEdit.view';
 import AuthService from './auth/Authorization.service';
+/* add interceptor for token */
+import './auth/httpConfig';
 
 export default function App() {
   useEffect(() => {
