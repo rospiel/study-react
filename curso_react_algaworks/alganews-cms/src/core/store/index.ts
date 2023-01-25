@@ -4,7 +4,7 @@ import { PostsReducer } from "./Posts.store";
 
 const observeActions: Middleware = () => (next) => (action) => {
   if (isPending(action)) {
-    window.alert("isRejected");
+    console.log("isRejected");
   }
   console.log(action);
   next(action);
