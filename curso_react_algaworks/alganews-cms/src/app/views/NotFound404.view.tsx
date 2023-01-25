@@ -10,6 +10,10 @@ export default function NotFound404() {
     /* to remove from history the notfount page e send to home */
     history.replace('/');
   }
+
+  if (window.location.pathname === "/authorize") {
+    return null;
+  }
   
   return (
     <NotFound404Container>

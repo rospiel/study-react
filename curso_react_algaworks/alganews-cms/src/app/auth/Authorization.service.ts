@@ -6,6 +6,14 @@ const authServer = axios.create({
   baseURL: "http://localhost:8081"
 });
 
+authServer.interceptors.response.use(undefined, async (error) => {
+  if (error?.response?.status === 401) {
+    AuthService.imperativeSendToLogout();
+  }
+
+  return Promise.reject(error);
+})
+
 export interface OAuthAuthorizationTokenResponse {
   access_token: string;
   refresh_token: string;
@@ -23,6 +31,11 @@ export default class AuthService {
   static readonly CLIENT_ID = "alganews-admin";
   static readonly REQUEST_MAPPING_OAUTH = "/oauth/";
   static readonly APP_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
+
+  public static imperativeSendToLogout() {
+    window.localStorage.clear();
+    window.location.href = "http://localhost:8081/logout?redirect=http://localhost:3000";
+  }
 
   public static async getFirstAccessToken(config: {
     code: string | null;
