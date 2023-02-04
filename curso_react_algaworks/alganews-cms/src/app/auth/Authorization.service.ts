@@ -2,8 +2,11 @@ import axios from "axios";
 import queryString from "qs";
 import pkceChallenge from "pkce-challenge";
 
+const AUTH_SERVER = process.env.REACT_APP_AUTH_SERVER_URL;
+const REACT_APP_URL = process.env.REACT_APP_URL;
+
 const authServer = axios.create({
-  baseURL: "http://localhost:8081"
+  baseURL: AUTH_SERVER
 });
 
 authServer.interceptors.response.use(undefined, async (error) => {
@@ -28,13 +31,13 @@ export default class AuthService {
   static readonly REFRESH_TOKEN = "refreshToken";
   static readonly CODE_VERIFIER = "codeVerifier";
   static readonly GRANT_TYPE_AUTHORIZATION_CODE = "authorization_code";
-  static readonly CLIENT_ID = "alganews-admin";
+  static readonly CLIENT_ID = "alganews-cms";
   static readonly REQUEST_MAPPING_OAUTH = "/oauth/";
   static readonly APP_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
 
   public static imperativeSendToLogout() {
     window.localStorage.clear();
-    window.location.href = "http://localhost:8081/logout?redirect=http://localhost:3000";
+    window.location.href = `${AUTH_SERVER}/logout?redirect=${REACT_APP_URL}`
   }
 
   public static async getFirstAccessToken(config: {
@@ -81,7 +84,7 @@ export default class AuthService {
       grant_type: this.GRANT_TYPE_AUTHORIZATION_CODE,
     })
 
-    return `http://localhost:8081${this.REQUEST_MAPPING_OAUTH}authorize?${config}`;
+    return `${AUTH_SERVER}${this.REQUEST_MAPPING_OAUTH}authorize?${config}`;
   }
 
   public static async imperativelySendToLoginScreen() {

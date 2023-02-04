@@ -1,4 +1,5 @@
 import confirm from '../../../core/utils/confirm';
+import AuthService from '../../auth/Authorization.service';
 import Logo from '../../components/Logo';
 import NavBar from '../../components/NavBar';
 import SessionController from '../../components/SessionController/SessionController';
@@ -24,7 +25,14 @@ function DefaultLayout (props: DefaultLayoutProps) {
         </DL.FeaturedContent>
 
         <DL.Aside>
-          <SessionController name="Rodrigo Santos" description="Developer" onLogout={() => {confirm({question: 'Você deseja deslogar?'})}} />
+          <SessionController name="Rodrigo Santos" description="Developer" onLogout={() => {
+            confirm({
+              question: 'Você deseja deslogar?',
+              onConfirm() {
+                AuthService.imperativeSendToLogout();
+              }
+            })
+          }} />
         </DL.Aside>
       </DL.Main>
     </DL.Wrapper>

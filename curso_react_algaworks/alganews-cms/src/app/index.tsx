@@ -12,6 +12,8 @@ import AuthService from './auth/Authorization.service';
 import './auth/httpConfig';
 
 export default function App() {
+  const REACT_APP_URL = process.env.REACT_APP_URL;
+
   useEffect(() => {
     window.onunhandledrejection = function (error: PromiseRejectionEvent) {
       info({
@@ -34,15 +36,11 @@ export default function App() {
 
       if (isInAuthorizationRoute) {
         if (isCodesNotPresent(code, codeVerifier)) {
-          info({
-            title: "Segurança",
-            description: "Código não foi informado"
-          })
-          return;
+          AuthService.imperativeSendToLogout();
         }
 
         const { access_token, refresh_token } =
-          await AuthService.getFirstAccessToken({ code, codeVerifier, redirectUri: "http://localhost:3000/authorize" });
+          await AuthService.getFirstAccessToken({ code, codeVerifier, redirectUri: `${REACT_APP_URL}/authorize` });
 
         AuthService.setAccessToken(access_token);
         AuthService.setRefreshToken(refresh_token);

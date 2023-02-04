@@ -44,8 +44,7 @@ Service.setResponseInterceptors((response) => response, async (error) => {
     const refreshToken = AuthService.getRefreshToken();
 
     if (isPossibleRenewToken(codeVerifier, refreshToken)) {
-      window.alert('TODO: IMPLEMENTAR LOGOUT');
-      return;
+      AuthService.imperativeSendToLogout();
     }
 
     const tokens = await renewToken(codeVerifier, refreshToken);
