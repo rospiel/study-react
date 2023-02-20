@@ -17,6 +17,13 @@ interface PostsStoreState {
 
 const initialState = {} as PostsStoreState;
 initialState.fetching = false;
+initialState.posts = {
+  page: 0,
+  size: 0,
+  totalElements: 0,
+  totalPages: 1,
+  content: [],
+};
 
 export const PostsReducer = createReducer(initialState, (builder) => {
   const pendingActions = isPending(fetchAllPosts, save);

@@ -10,16 +10,21 @@ const observeActions: Middleware = () => (next) => (action) => {
   next(action);
 }
 
-const store = configureStore({
-  reducer: {
-    editor: editorReducer,
-    posts: PostsReducer
-  }, 
-  middleware: function (getDefaultMiddlewares) {
-    return getDefaultMiddlewares().concat(observeActions);
-  }
-})
+export function createAppStore() {
+  return configureStore({
+    reducer: {
+      editor: editorReducer,
+      posts: PostsReducer
+    },
+    middleware: function (getDefaultMiddlewares) {
+      return getDefaultMiddlewares().concat(observeActions);
+    }
+  });
+}
+
+const store = createAppStore();
 
 export default store;
+export type AppStore = typeof store;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

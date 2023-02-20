@@ -29,7 +29,7 @@ function CircleChart (props: CircleChartProps){
   
   return (
     <CC.Wrapper>
-      <CC.SvgWrapper height={props.size} width={props.size}>
+      <CC.SvgWrapper data-testid={"test-svg-wrapper"} height={props.size} width={props.size}>
         <CC.Svg width={props.size} height={props.size}>
           <CC.CircleBG cy={CENTER} cx={CENTER} r={RADIUS} />
           <CC.Circle fill="none" cy={CENTER} cx={CENTER} r={RADIUS} stroke={STROKE_COLOR} strokeWidth={STROKE_WIDTH} strokeDasharray={CIRCUMFERENCE} strokeDashoffset={offset} />
