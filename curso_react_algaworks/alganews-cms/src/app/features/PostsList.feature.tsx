@@ -1,6 +1,7 @@
 import { mdiOpenInNew } from "@mdi/js"
 import Icon from "@mdi/react"
-import { format } from "date-fns/esm"
+import format from "date-fns/format"
+import parseISO from "date-fns/parseISO"
 import { useEffect, useMemo, useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import { useDispatch, useSelector } from "react-redux"
@@ -117,7 +118,7 @@ export default function PostsList () {
         accessor: 'createdAt', 
         Cell: (props) => (
           <Views>
-            {format(new Date(props.value), 'dd/MM/yyyy')}
+            {format(parseISO(props.value), 'dd/MM/yyyy')}
           </Views>
         )
       },
@@ -126,7 +127,7 @@ export default function PostsList () {
         accessor: 'updatedAt',
         Cell: (props) => (
           <Conversions>
-            {format(new Date(props.value), 'dd/MM/yyyy')}
+            {format(parseISO(props.value), 'dd/MM/yyyy')}
           </Conversions> 
         )
       },

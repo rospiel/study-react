@@ -1,5 +1,6 @@
 import { ChartProps } from "../../app/components/Chart/Chart";
-import { format } from "date-fns";
+import format from "date-fns/format"
+import parseISO from "date-fns/parseISO"
 import { ptBR } from "date-fns/locale";
 import { Metric } from "rospiel-react_alganews-sdk";
 
@@ -9,7 +10,7 @@ function convertEditorMonthlyEarningsToDataChartJs(editorEarnings: Metric.Editor
   const data2: number[] = [];
 
   editorEarnings.forEach(earning => {
-    const formattedMonth = format(new Date(earning.yearMonth), "MMMM", {
+    const formattedMonth = format(parseISO(earning.yearMonth), "MMMM", {
       locale: ptBR
     });
     
